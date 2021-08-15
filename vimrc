@@ -4,9 +4,15 @@
 set nu rnu 		 "set number and relative number
 set wrap   		 "line wrapper
 set linebreak    "Sends entire word to next line rather than a single letter(WordWrap)
-set t_SH = "5" 	 "for setting cursor style in vim while :term is executed
+set t_SH=0 	     "for setting cursor style in vim while :term is executed
 set t_Co=256
+set autochdir    "To make editting file directory default
+
+"remap esc to jk 
+inoremap jk <Esc>l
+
 "au BufAdd,BufNewFile,BufRead * nested tab sball     "opens all the new file/buffers in tabs by default
+autocmd FileType c,cpp setlocal equalprg=clang-format
 
 colorscheme jellybeans  "setting colorscheme
 
@@ -25,6 +31,9 @@ set nohlsearch	" Highlight all search results
 set smartcase	" Enable smart-case search
 set ignorecase	" Always case-insensitive
 set incsearch	" Searches for strings incrementally
+set hidden      " Keeps files open in the background.
+set noswapfile  " Disable swap files
+set scrolloff=8 " doesn't allow cursor to go all the way to the last line
 
 set tabstop=4 
 set softtabstop=4 
@@ -33,10 +42,15 @@ set textwidth=120
 set expandtab 
 set smartindent
 set autoindent 
-set fileformat=unix 
+set fileformat=unix
 
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
+"Set custom background color jellybean.vim
+"let g:jellybeans_overrides = {
+"\    'background': { 'ctermbg': '000000', '256ctermbg': '000000' },
+"\}
+"if has('termguicolors') && &termguicolors
+"    let g:jellybeans_overrides['background']['guibg'] = 'none'
+"endif
 
 "The below code sets tab config to specific files mentioned only.
 "Tab configurations for various languages
@@ -51,20 +65,19 @@ let NERDTreeDirArrows = 1
 
 
 "Cpp skeleton
-":autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp
+:autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp
 
 "-------------------------------------------------------------------------------------------------------------------------------------------------
 "Hotkey configurations
 "-------------------------------------------------------------------------------------------------------------------------------------------------
-"NerdTree stuff
-"autocmd vimenter * NERDTree
-map <F2> :NERDTreeToggle<CR>
-let g:NERDTreeWinPos = "right" "sets nerd tree to right
 
 "Code compilation mappings
 autocmd filetype python map <F3> :!clear && python3 %<CR>
 autocmd filetype cpp map <F3> :!clear && g++ -std=c++14 % && ./a.out<CR>
-autocmd filetype java map <F3> :w <bar> !javac % && java %:r <CR>
+autocmd filetype java map <F3> :!javac % && java %:r <CR>
+
+autocmd BufReadPost *.kt setlocal filetype=kotlin "vim was not recognizing kotlin file by default so had to explicitly add define it.
+autocmd filetype kotlin map <F3> :!clear && kotlinc % -include-runtime -d a.jar && java -jar a.jar<CR>
 
 "Specific to /home/cp.cpp for competitive programming. n"
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
@@ -84,26 +97,58 @@ function! CP()
 	:vertical resize 60
 endfunction 
 autocmd filetype cpp map <F12> :call CP()<CR>clear && g++ -std=c++14 cp.cpp && ./a.out <input.txt<CR>
-autocmd filetype cpp map <F10> :call CP()<CR>clear && g++ -std=c++14  asd.cpp && ./a.out<CR>
+autocmd filetype cpp map <F10> :call CP()<CR>clear && g++ -std=c++14 asd.cpp && ./a.out<CR>
 
 "Same shit optimized above.
 "map <F12> :w<CR>:bel vert term<CR><C-w>:vertical resize 60<CR>clear && g++ -std=c++14 cp.cpp && ./a.out<CR>
 
 "Shortcuts
 "Vertical terminal
-map <C-t> :bel vert term<CR><C-w>:vertical resize 60<CR>
+map <F2> :bel vert term<CR><C-w>:vertical resize 60<CR>
 map <C-c> "+y
 map <C-p> "+p
 
+nnoremap <F7> :MaximizerToggle<CR>
+vnoremap <F7> :MaximizerToggle<CR>gv
+inoremap <F7> <C-o>:MaximizerToggle<CR>
+
+" To disable arrow keys
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
+"VimSpector
+" let g:vimspector_enable_mappings = 'HUMAN'
+" nnoremap <leader>dd :call vimspector#Launch()<CR>
+" nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
+" nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
+" nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
+" nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+" nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
+" nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
+" nnoremap <leader>di :call AddToWatch()<CR>
+" nnoremap <leader>dx :call vimspector#Reset()<CR>
+" nnoremap <leader>dX :call vimspector#ClearBreakpoints()<CR>
+" nnoremap <leader>dk :call vimspector#StepOut()<CR>
+" nnoremap <leader>dl :call vimspector#StepInto()<CR>
+" nnoremap <leader>dj :call vimspector#StepOver()<CR>
+" nnoremap <leader>d_ :call vimspector#Restart()<CR>
+" nnoremap <leader>dn :call vimspector#Continue()<CR>
+" nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
+" nnoremap <leader>dbp :call vimspector#ToggleBreakpoint()<CR>
+" nnoremap <leader>dcbp :call vimspector#ToggleConditionalBreakpoint()<CR>
+
 "-------------------------------------------------------------------------------------------------------------------------------------------------
-"Plugs
+"Plugs - Various plugins to make life simpler.
 "-------------------------------------------------------------------------------------------------------------------------------------------------
 call plug#begin()
-Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'udalov/kotlin-vim'
+Plug 'szw/vim-maximizer'
+" Plug 'puremourning/vimspector'
 call plug#end()
-
 
 "-------------------------------------------------------------------------------------------------------------------------------------------------
 " coc default config from the github repo
@@ -273,3 +318,4 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
