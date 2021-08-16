@@ -1,3 +1,4 @@
+
 "-------------------------------------------------------------------------------------------------------------------------------------------------
 "Basic setters
 "-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -118,27 +119,6 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-"VimSpector
-" let g:vimspector_enable_mappings = 'HUMAN'
-" nnoremap <leader>dd :call vimspector#Launch()<CR>
-" nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
-" nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
-" nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
-" nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
-" nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
-" nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
-" nnoremap <leader>di :call AddToWatch()<CR>
-" nnoremap <leader>dx :call vimspector#Reset()<CR>
-" nnoremap <leader>dX :call vimspector#ClearBreakpoints()<CR>
-" nnoremap <leader>dk :call vimspector#StepOut()<CR>
-" nnoremap <leader>dl :call vimspector#StepInto()<CR>
-" nnoremap <leader>dj :call vimspector#StepOver()<CR>
-" nnoremap <leader>d_ :call vimspector#Restart()<CR>
-" nnoremap <leader>dn :call vimspector#Continue()<CR>
-" nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
-" nnoremap <leader>dbp :call vimspector#ToggleBreakpoint()<CR>
-" nnoremap <leader>dcbp :call vimspector#ToggleConditionalBreakpoint()<CR>
-
 "-------------------------------------------------------------------------------------------------------------------------------------------------
 "Plugs - Various plugins to make life simpler.
 "-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -147,7 +127,6 @@ Plug 'tpope/vim-commentary'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'udalov/kotlin-vim'
 Plug 'szw/vim-maximizer'
-" Plug 'puremourning/vimspector'
 call plug#end()
 
 "-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -318,5 +297,3 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
-
