@@ -1,32 +1,54 @@
-
 "-------------------------------------------------------------------------------------------------------------------------------------------------
-"Basic setters
+"Basic setters and plugin configurations
 "-------------------------------------------------------------------------------------------------------------------------------------------------
 set nu rnu 		 "set number and relative number
 set wrap   		 "line wrapper
 set linebreak    "Sends entire word to next line rather than a single letter(WordWrap)
-set t_SH=0 	     "for setting cursor style in vim while :term is executed
-set t_Co=256
 set autochdir    "To make editting file directory default
+set laststatus=2
+set t_Co=256
+
+"Cursor Settings
+" Use a line cursor within insert mode and a block cursor everywhere else.
+" Reference chart of values:
+"   Ps = 0  -> blinking block.
+"   Ps = 1  -> blinking block (default).
+"   Ps = 2  -> steady block.
+"   Ps = 3  -> blinking underline.
+"   Ps = 4  -> steady underline.
+"   Ps = 5  -> blinking bar (xterm).
+"   Ps = 6  -> steady bar (xterm).
+let &t_SI = "\e[6 q" "Insert mode
+let &t_EI = "\e[2 q" "Normal mode
 
 "remap esc to jk 
-inoremap jk <Esc>l
+imap jj <Esc>
 
-"au BufAdd,BufNewFile,BufRead * nested tab sball     "opens all the new file/buffers in tabs by default
+"opens all the new file/buffers in tabs by default
+" au BufAdd,BufNewFile,BufRead * nested tab sball    
+
 autocmd FileType c,cpp setlocal equalprg=clang-format
 
-colorscheme jellybeans  "setting colorscheme
+" let g:jellybeans_overrides = {
+" \    'background': { 'guibg': 'none'},
+" \}
+colorscheme jellybeans "setting colorscheme
+
+" colorscheme gruvbox
+" let g:gruvbox_contrast_dark = 'hard'
+
+set background=dark
 
 "STATUSLINE CONFIG
-set laststatus=2  "To Show statusline (hidden by default)
-set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P "To see the file name in the satus line (if removes, status line will show prettier)
-" now set it to change the status line based on mode
-if version >= 700
-  au InsertEnter * hi StatusLine term=reverse ctermbg=8 ctermfg=0 
-  au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 
-endif
-" default the statusline to green when entering Vim
-au vimenter * hi statusline ctermbg=2 ctermfg=0 
+" set laststatus=2  "To Show statusline (hidden by default)
+" " set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P "To see the file name in the satus line (if removes, status line will show prettier)
+" " now set it to change the status line based on mode
+" if version >= 700
+"   au InsertEnter * hi StatusLine term=reverse ctermbg=8 ctermfg=0 
+"   au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 
+" endif
+" " default the statusline to green when entering Vim
+" au vimenter * hi statusline ctermbg=2 ctermfg=0 
 
 set nohlsearch	" Highlight all search results
 set smartcase	" Enable smart-case search
@@ -45,28 +67,31 @@ set smartindent
 set autoindent 
 set fileformat=unix
 
-"Set custom background color jellybean.vim
-"let g:jellybeans_overrides = {
-"\    'background': { 'ctermbg': '000000', '256ctermbg': '000000' },
-"\}
-"if has('termguicolors') && &termguicolors
-"    let g:jellybeans_overrides['background']['guibg'] = 'none'
-"endif
-
 "The below code sets tab config to specific files mentioned only.
 "Tab configurations for various languages
-" au BufNewFile,BufRead *.py,*.java,*.cpp,*.c,*.rkt,*.h,.*.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html,*.php 
-"     \ set tabstop=4 |
-"     \ set softtabstop=4 |
-"     \ set shiftwidth=4 |
-"     \ set textwidth=120 |
-"     \ set expandtab |
-"     \ set autoindent |
-"     \ set fileformat=unix |
+au BufNewFile,BufRead *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html,*.php 
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2 |
+    \ set textwidth=120 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix |
 
 
 "Cpp skeleton
-:autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp
+:autocmd BufNewFile *.cpp r ~/.vim/templates/skeleton.cpp
+
+"Coc-prettier config (Note: Vim-prettier is different)
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+"vim-airline config
+" let g:airline_powerline_fonts = 1
+
+" lightline config
+ let g:lightline = {
+       \ 'colorscheme': 'jellybeans',
+       \ }
 
 "-------------------------------------------------------------------------------------------------------------------------------------------------
 "Hotkey configurations
@@ -75,7 +100,8 @@ set fileformat=unix
 "Code compilation mappings
 autocmd filetype python map <F3> :!clear && python3 %<CR>
 autocmd filetype cpp map <F3> :!clear && g++ -std=c++14 % && ./a.out<CR>
-autocmd filetype java map <F3> :!javac % && java %:r <CR>
+autocmd filetype java map <F3> :!clear && javac % && java %:r <CR>
+
 
 autocmd BufReadPost *.kt setlocal filetype=kotlin "vim was not recognizing kotlin file by default so had to explicitly add define it.
 autocmd filetype kotlin map <F3> :!clear && kotlinc % -include-runtime -d a.jar && java -jar a.jar<CR>
@@ -106,18 +132,21 @@ autocmd filetype cpp map <F10> :call CP()<CR>clear && g++ -std=c++14 asd.cpp && 
 "Shortcuts
 "Vertical terminal
 map <F2> :bel vert term<CR><C-w>:vertical resize 60<CR>
+map <F4> :bel term<CR><C-w>:resize 10<CR>
 map <C-c> "+y
 map <C-p> "+p
 
 nnoremap <F7> :MaximizerToggle<CR>
 vnoremap <F7> :MaximizerToggle<CR>gv
 inoremap <F7> <C-o>:MaximizerToggle<CR>
-
+"
 " To disable arrow keys
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
+" noremap <Up> <Nop>
+" noremap <Down> <Nop>
+" noremap <Left> <Nop>
+" noremap <Right> <Nop>
+" inoremap <ESC> <nop>
+
 
 "-------------------------------------------------------------------------------------------------------------------------------------------------
 "Plugs - Various plugins to make life simpler.
@@ -127,6 +156,10 @@ Plug 'tpope/vim-commentary'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'udalov/kotlin-vim'
 Plug 'szw/vim-maximizer'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'morhetz/gruvbox'
+Plug 'itchyny/lightline.vim'
 call plug#end()
 
 "-------------------------------------------------------------------------------------------------------------------------------------------------
