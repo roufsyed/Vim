@@ -29,9 +29,9 @@ imap jj <Esc>
 
 autocmd FileType c,cpp setlocal equalprg=clang-format
 
-" let g:jellybeans_overrides = {
-" \    'background': { 'guibg': 'none'},
-" \}
+let g:jellybeans_overrides = {
+\    'background': { 'guibg': 'none'},
+\}
 colorscheme jellybeans "setting colorscheme
 
 " colorscheme gruvbox
@@ -41,8 +41,8 @@ set background=dark
 
 "STATUSLINE CONFIG
 " set laststatus=2  "To Show statusline (hidden by default)
-" " set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P "To see the file name in the satus line (if removes, status line will show prettier)
-" " now set it to change the status line based on mode
+" set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P "To see the file name in the satus line (if removes, status line will show prettier)
+" now set it to change the status line based on mode
 " if version >= 700
 "   au InsertEnter * hi StatusLine term=reverse ctermbg=8 ctermfg=0 
 "   au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 
@@ -84,9 +84,6 @@ au BufNewFile,BufRead *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.g
 
 "Coc-prettier config (Note: Vim-prettier is different)
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-"vim-airline config
-" let g:airline_powerline_fonts = 1
 
 " lightline config
  let g:lightline = {
@@ -156,9 +153,6 @@ Plug 'tpope/vim-commentary'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'udalov/kotlin-vim'
 Plug 'szw/vim-maximizer'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 call plug#end()
 
