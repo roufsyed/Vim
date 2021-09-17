@@ -79,8 +79,9 @@ au BufNewFile,BufRead *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.g
     \ set fileformat=unix |
 
 
-"Cpp skeleton
-:autocmd BufNewFile *.cpp r ~/.vim/templates/skeleton.cpp
+"Skeleton for java and cpp
+autocmd BufNewFile *.cpp r ~/.vim/templates/skeleton.cpp
+autocmd BufNewFile *.java r ~/.vim/templates/skeleton.java
 
 "Coc-prettier config (Note: Vim-prettier is different)
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
@@ -105,6 +106,7 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 " --color: Search color options
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
 "-------------------------------------------------------------------------------------------------------------------------------------------------
 "Hotkey configurations
 "-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -119,16 +121,6 @@ autocmd BufReadPost *.kt setlocal filetype=kotlin "vim was not recognizing kotli
 autocmd filetype kotlin map <F3> :!clear && kotlinc % -include-runtime -d a.jar && java -jar a.jar<CR>
 
 "Specific to /home/cp.cpp for competitive programming. n"
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
-
-" filetypes like xml, html, xhtml, ...
-" These are the file types where this plugin is enabled.
-"
-let g:closetag_filetypes = 'html,xhtml,phtml'
-
-" filetypes like xml, xhtml, ...
-" This will make the list of non-closing tags self-closing in the specified files.
-"
 "Note: does not work without a file type. tried $
 function! CP()
 	:w
