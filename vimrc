@@ -85,11 +85,26 @@ au BufNewFile,BufRead *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.g
 "Coc-prettier config (Note: Vim-prettier is different)
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
+"vim-airline config
+" let g:airline_powerline_fonts = 1
+
 " lightline config
  let g:lightline = {
        \ 'colorscheme': 'jellybeans',
        \ }
 
+"FZF config
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --no-ignore: Do not respect .gitignore, etc...
+" --hidden: Search hidden files and folders
+" --follow: Follow symlinks
+" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+" --color: Search color options
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 "-------------------------------------------------------------------------------------------------------------------------------------------------
 "Hotkey configurations
 "-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -133,6 +148,12 @@ map <F4> :bel term<CR><C-w>:resize 10<CR>
 map <C-c> "+y
 map <C-p> "+p
 
+let mapleader = "," " map leader to Space
+nnoremap \ :Rg<CR>
+nnoremap <C-T> :Files<cr>
+nnoremap <Leader>b :Buffers<cr>
+nnoremap <Leader>s :BLines<cr>
+
 nnoremap <F7> :MaximizerToggle<CR>
 vnoremap <F7> :MaximizerToggle<CR>gv
 inoremap <F7> <C-o>:MaximizerToggle<CR>
@@ -153,7 +174,10 @@ Plug 'tpope/vim-commentary'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'udalov/kotlin-vim'
 Plug 'szw/vim-maximizer'
+Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 "-------------------------------------------------------------------------------------------------------------------------------------------------
