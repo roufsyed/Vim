@@ -20,7 +20,6 @@ set hidden      " Keeps files open in the background.
 set noerrorbells " Turns off bell sound
 set noswapfile  " Disable swap files
 set scrolloff=8 " Doesn't allow cursor to go all the way to the last line
-
 autocmd FileType c,cpp setlocal equalprg=clang-format
 
 "------------------------------------------------------------------------------------------------------------------------------------------------
