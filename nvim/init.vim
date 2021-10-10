@@ -7,6 +7,7 @@ set rnu 		 " Set relative number
 set wrap   		 " Line wrapper
 set linebreak    " Sends entire word to next line rather than a single letter(WordWrap)
 set autochdir    " To make editting file directory default
+set mouse=a
 autocmd BufRead,BufNewFile * setlocal signcolumn=yes  " Enable signcolumn for all the buffers
 autocmd FileType netrw setlocal signcolumn=no  " Disable signcolumn in netrw
 set laststatus=2 " Enable status line
@@ -29,7 +30,6 @@ call plug#begin()
 Plug 'tpope/vim-commentary'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'udalov/kotlin-vim'
-Plug 'szw/vim-maximizer'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
