@@ -1,13 +1,20 @@
-" let g:jellybeans_overrides = {
-" \    'background': { 'guibg': 'none'},
-" \}
+set background=dark
 
-colorscheme gruvbox "setting colorscheme
+"Jellybeans
+ colorscheme jellybeans
+ let g:jellybeans_overrides = {
+ \    'background': { 'guibg': '#000000'},
+ \}
 
-" colorscheme gruvbox
- let g:gruvbox_contrast_dark = 'hard'
- set background=dark
+""gruvbox
+"colorscheme gruvbox
+"let g:gruvbox_contrast_dark = 'hard'
 
+
+" lightline config
+ let g:lightline = {
+       \ 'colorscheme': 'jellybeans',
+       \ }
 
 "Cursor Settings
 " Use a line cursor within insert mode and a block cursor everywhere else.
@@ -21,11 +28,6 @@ colorscheme gruvbox "setting colorscheme
 "   Ps = 6  -> steady bar (xterm).
 let &t_SI = "\e[6 q" "Insert mode
 let &t_EI = "\e[2 q" "Normal mode
-
-" lightline config
- let g:lightline = {
-       \ 'colorscheme': 'gruvbox',
-       \ }
 
 "STATUSLINE CONFIG
 " set laststatus=2  "To Show statusline (hidden by default)
