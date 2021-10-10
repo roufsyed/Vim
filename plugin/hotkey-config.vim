@@ -27,25 +27,40 @@ autocmd filetype cpp map <F10> :call CP()<CR>clear && g++ -std=c++14 asd.cpp && 
 
 "Shortcuts
 "Vertical terminal
-" map <F3> :split term://bash<CR>
-map <F4> :split term://bash<CR><C-w>L:vertical resize 60<CR>
+nmap <F4> :split term://bash<CR><C-w>L:vertical resize 60<CR>
+nmap <F3> :split term://bash<CR><C-w>J:resize 10<CR> 
+"<C-w>J:resize 10<CR>
 map <C-c> "+y
 map <C-p> "+p
 
 " Basic Buffer config for normal mode
-nnoremap <silent>bd :bd<cr>
-nnoremap <silent>bn :bn<cr>
-nnoremap <silent>bp :bp<cr>
+nnoremap <silent>,d :bd<cr>
+nnoremap <silent>,n :bn<cr>
+nnoremap <silent>,p :bp<cr>
 nnoremap <silent><C-i> :e /home/rouf/.config/nvim/init.vim<cr>
 nnoremap ss :source init.vim<cr>
 nnoremap <leader>e :Vexplore!<cr>
 
 
-nnoremap <leader>- :vertical resize -5<CR>
-nnoremap <leader>= :vertical resize +5<CR>
-nnoremap <leader>0 :vertical resize 100<CR>
+nnoremap <silent><leader>- :vertical resize -5<CR>
+nnoremap <silent><leader>= :vertical resize +5<CR>
+nnoremap <silent><leader>0 :vertical resize 100<CR>
 
+tnoremap jj <C-\><C-n>
 
+"To move to a different window
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
+inoremap <A-h> <C-\><C-N><C-w>h
+inoremap <A-j> <C-\><C-N><C-w>j
+inoremap <A-k> <C-\><C-N><C-w>k
+inoremap <A-l> <C-\><C-N><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
 " To disable arrow keys
 " noremap <Up> <Nop>
 " noremap <Down> <Nop>
