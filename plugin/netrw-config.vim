@@ -14,7 +14,7 @@ let g:netrw_liststyle = 3 "list style
 "     Given a |List| such as this, a remote server
 "     named by the "servername" will be used for
 "     editing.  It will also use the specified tab
-let g:netrw_browse_split = 4 "open file in what split
+let g:netrw_browse_split = 0 "open file in what split
 
 let g:netrw_altv = 1
 let g:netrw_winsize = 25 "vertical Netrw size
