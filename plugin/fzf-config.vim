@@ -10,10 +10,9 @@
 " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 " --color: Search color options
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
-let mapleader = "," "map leade, to Space
 set timeoutlen=500 "Set timeout length to 500 ms
 
 nnoremap \ :Rg<CR>
 nnoremap <C-t> :Files<cr>
-nnoremap <leader>b :Buffers<cr>
+noremap <leader>b :Buffers<cr>
 nnoremap <leader>s :BLines<cr>
