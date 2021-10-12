@@ -6,7 +6,7 @@ set termguicolors " True color
 set rnu 		 " Set relative number
 set wrap   		 " Line wrapper
 set linebreak    " Sends entire word to next line rather than a single letter(WordWrap)
-set autochdir    " To make editting file directory default
+set autochdir    " Auto change directory: To make editting file directory default
 set mouse=a
 autocmd BufRead,BufNewFile * setlocal signcolumn=yes  " Enable signcolumn for all the buffers
 autocmd FileType netrw setlocal signcolumn=no  " Disable signcolumn in netrw
@@ -22,6 +22,9 @@ set noerrorbells " Turns off bell sound
 set noswapfile  " Disable swap files
 set scrolloff=8 " Doesn't allow cursor to go all the way to the last line
 autocmd FileType c,cpp setlocal equalprg=clang-format
+
+"Remap leader 
+let mapleader = "," "map leader to coma 
 
 "------------------------------------------------------------------------------------------------------------------------------------------------
 "Plugs - Various plugins to make life simpler.
