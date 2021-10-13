@@ -24,7 +24,7 @@ nnoremap <silent><leader>d :bd<cr>
 " nnoremap <silent><leader>dd :bd!<cr>
 
 "save and quit
-nnoremap <leader>w :w<CR>
+nnoremap <leader>w :update<CR>
 nnoremap <leader>q :q<CR>
 
 "to open init and source
@@ -42,28 +42,29 @@ nnoremap <silent><leader>0 :vertical resize 100<CR>
 "Move texts around
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-inoremap <C-j> <esc>:m .+1<CR>i
-inoremap <C-k> <esc>:m .-2<CR>i
 nnoremap <leader>j :m .+1<CR>==
 nnoremap <leader>k :m .-2<CR>==
+inoremap <C-j> <esc>:m .+1<CR>i
+inoremap <C-k> <esc>:m .-2<CR>i
 
 "To move to a different window
-tnoremap <A-h> <C-\><C-N><C-w>h
-tnoremap <A-j> <C-\><C-N><C-w>j
-tnoremap <A-k> <C-\><C-N><C-w>k
-tnoremap <A-l> <C-\><C-N><C-w>l
-inoremap <A-h> <C-\><C-N><C-w>h
-inoremap <A-j> <C-\><C-N><C-w>j
-inoremap <A-k> <C-\><C-N><C-w>k
-inoremap <A-l> <C-\><C-N><C-w>l
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
+tnoremap <C-h> <C-\><C-N><C-w>h
+tnoremap <C-j> <C-\><C-N><C-w>j
+tnoremap <C-k> <C-\><C-N><C-w>k
+tnoremap <C-l> <C-\><C-N><C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+" Commented due to conflict with move text around hotkey
+" inoremap <C-h> <C-\><C-N><C-w>h
+" inoremap <C-j> <C-\><C-N><C-w>j
+" inoremap <C-k> <C-\><C-N><C-w>k
+" inoremap <C-l> <C-\><C-N><C-w>l
 
 "To move windows around
-nnoremap <up> <C-w>K
-nnoremap <down> <C-w>J
-nnoremap <left> <C-w>H
-nnoremap <right> <C-w>L
+nnoremap <A-k> <C-w>K
+nnoremap <A-j> <C-w>J
+nnoremap <A-h> <C-w>H
+nnoremap <A-l> <C-w>L
 
