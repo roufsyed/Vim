@@ -7,7 +7,7 @@ imap jj <Esc>
 tnoremap jj <C-\><C-n>
 
 "remap semicolon to colon for normal mode
-nnoremap ; :
+" nnoremap ; :
 
 "Shortcuts for vertical and horizontal terminal
 nmap <F4> :split term://bash<CR><C-w>L:vertical resize 60<CR>
@@ -27,6 +27,9 @@ nnoremap <silent><leader>d :bd<cr>
 nnoremap <leader>w :update<CR>
 nnoremap <leader>q :q<CR>
 
+"Search and replace
+nnoremap <leader>sr :%s/<C-r>+//c
+
 "to open init and source
 nnoremap <silent><C-i> :e /home/rouf/.config/nvim/init.vim<cr>
 nnoremap ss :source %<cr>
@@ -38,6 +41,11 @@ nnoremap <leader>e :Vexplore!<cr>
 nnoremap <silent><leader>- :vertical resize -5<CR>
 nnoremap <silent><leader>= :vertical resize +5<CR>
 nnoremap <silent><leader>0 :vertical resize 100<CR>
+
+"cnext, cprevios and copen
+nmap <C-[> :cnext<cr>
+nmap <C-]> :cprev<cr>
+nmap <C-q> :copen<cr>
 
 "Move texts around
 vnoremap J :m '>+1<CR>gv=gv
@@ -56,11 +64,6 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-" Commented due to conflict with move text around hotkey
-" inoremap <C-h> <C-\><C-N><C-w>h
-" inoremap <C-j> <C-\><C-N><C-w>j
-" inoremap <C-k> <C-\><C-N><C-w>k
-" inoremap <C-l> <C-\><C-N><C-w>l
 
 "To move windows around
 nnoremap <A-k> <C-w>K
