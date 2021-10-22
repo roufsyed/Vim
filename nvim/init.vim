@@ -6,7 +6,7 @@ set termguicolors " True color
 set rnu 		 " Set relative number
 set wrap   		 " Line wrapper
 set linebreak    " Sends entire word to next line rather than a single letter(WordWrap)
-set autochdir    " Auto change directory: To make editting file directory default
+" set autochdir    " Auto change directory: To make editting file directory default
 set mouse=a
 autocmd BufRead,BufNewFile * setlocal signcolumn=yes  " Enable signcolumn for all the buffers
 autocmd FileType netrw setlocal signcolumn=no  " Disable signcolumn in netrw
@@ -21,7 +21,6 @@ set hidden      " Keeps files open in the background.
 set noerrorbells " Turns off bell sound
 set noswapfile  " Disable swap files
 set scrolloff=8 " Doesn't allow cursor to go all the way to the last line
-autocmd FileType c,cpp setlocal equalprg=clang-format
 
 "Remap leader 
 let mapleader = "," "map leader to coma 
@@ -38,7 +37,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
+Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
-Plug 'ap/vim-css-color'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'ap/vim-css-color'
+Plug 'nanotech/jellybeans.vim'
+Plug 'Mofiqul/vscode.nvim'
+Plug 'mhinz/vim-startify'
 call plug#end()
