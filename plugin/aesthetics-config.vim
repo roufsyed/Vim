@@ -1,15 +1,14 @@
 set background=dark
 
 "Jellybeans
+ " let g:jellybeans_overrides = {
+ " \    'background': { 'guibg': '#000000'},
+ " \}
  colorscheme jellybeans
- let g:jellybeans_overrides = {
- \    'background': { 'guibg': '#000000'},
- \}
 
-""gruvbox
-"colorscheme gruvbox
-"let g:gruvbox_contrast_dark = 'hard'
-
+"vscode
+" let g:vscode_style = "dark"
+" colorscheme vscode
 
 " lightline config
  let g:lightline = {
@@ -29,6 +28,7 @@ set background=dark
 let &t_SI = "\e[6 q" "Insert mode
 let &t_EI = "\e[2 q" "Normal mode
 
+"Note: this statusline config ahs nothing to do with lightline or airline or any plugin as matter of fact.
 "STATUSLINE CONFIG
 " set laststatus=2  "To Show statusline (hidden by default)
 " set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P "To see the file name in the satus line (if removes, status line will show prettier)
