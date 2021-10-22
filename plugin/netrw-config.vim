@@ -17,4 +17,4 @@ let g:netrw_liststyle = 3 "list style
 let g:netrw_browse_split = 0 "open file in what split
 
 let g:netrw_altv = 1
-let g:netrw_winsize = 25 "vertical Netrw size
+" let g:netrw_winsize = 25 "vertical Netrw size
